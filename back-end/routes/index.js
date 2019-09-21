@@ -12,12 +12,11 @@ MongoClient.connect(url, { useNewUrlParser: true })
 
 
 router.post('/addTask', (req, res) => {
-
-  var myobj = { task: req.body.task, time: Date.now(), done: false };
+  var myobj = JSON.parse(req.body.todo)
+  console.log(myobj)
 
   db.collection("task").save(myobj, function (err) {
     if (err) throw err;
-    console.log("1 document inserted");
     res.json("1 document inserted");
   });
 
@@ -30,7 +29,7 @@ router.get('/allTodos', (req, res) => {
   });
 });
 
-router.delete('/task/:id', (req, res) => {
+router.delete('/delTask/:id', (req, res) => {
 
   db.collection('task').deleteOne({ _id: ObjectId(req.params.id) }, (err) => {
     if (err) {
@@ -39,6 +38,17 @@ router.delete('/task/:id', (req, res) => {
     res.json({ success: true, msg: "task removed by succesfully" });
   })
 });
+
+
+router.delete('/deleteAll', (req, res) => {
+  db.collection('task').deleteMany((err) => {
+    if (err) {
+      res.send(err);
+    }
+    res.json({ success: true, msg: "all tasks removed by succesfully" });
+  })
+});
+
 
 router.put('/upTask/:id', (req, res) => {
   var obj = JSON.parse(req.body.todo)

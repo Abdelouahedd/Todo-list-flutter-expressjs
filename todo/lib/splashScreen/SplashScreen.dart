@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/providers/TodoProvider.dart';
+
 import 'package:todo/screens/Home.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -16,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(
-      Duration(seconds: 1),
+      Duration(seconds: 5),
       () => Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (_) => new Home(title: "Todo")),

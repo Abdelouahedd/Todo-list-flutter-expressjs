@@ -19,6 +19,7 @@ class _TodoCardState extends State<TodoCard> {
     TodoProvider todop = Provider.of<TodoProvider>(context, listen: false);
 
     return Card(
+      margin: EdgeInsets.all(10),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadiusDirectional.circular(12),
       ),
@@ -44,6 +45,15 @@ class _TodoCardState extends State<TodoCard> {
             fontSize: 16.0,
             color: todo.done ? Colors.grey[300] : Colors.black,
             fontWeight: FontWeight.bold),
+      ),
+      trailing: IconButton(
+        icon: Icon(
+          Icons.delete,
+          color: Colors.red,
+        ),
+        onPressed: () async {
+          p.deleteTask(todo);
+        },
       ),
     );
   }

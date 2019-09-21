@@ -4,8 +4,8 @@ class Todo {
   int time;
   bool done;
 
-  Todo(this.id, this.task, this.time, this.done);
-  
+  Todo({this.id, this.task, this.time, this.done});
+
   void toggleCompleted() {
     done = !done;
   }
@@ -19,7 +19,7 @@ class Todo {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] =  this.id;
+    data['_id'] = this.id;
     data['task'] = this.task;
     data['time'] = this.time;
     data['done'] = this.done;
